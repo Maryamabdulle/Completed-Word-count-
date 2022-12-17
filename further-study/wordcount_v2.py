@@ -1,3 +1,6 @@
+# Refactor the Code into Functions and Normalize Words to Improve Output
+
+
 """Count words in file."""
 
 import sys

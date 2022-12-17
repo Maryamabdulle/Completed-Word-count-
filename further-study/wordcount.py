@@ -1,3 +1,5 @@
+#To Make the Program More Flexible
+
 """Count words in file."""
 
 import sys

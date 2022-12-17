@@ -1,32 +1,19 @@
 """Count words in file."""
-import sys
-filename = sys.argv[1]
+input_file = open("test.txt")
 
-word_count = {}
+word_counts = {}
 
-def normalize_word(word):
-    word = word.lower()
-    normal_word = ""
-    acceptable_chars = 'abcdefghijklmnopqrstuvwxyz'
-    acceptable_chars = acceptable_chars + "'" + "-"
-    for char in word:
-        if char in acceptable_chars:
-            normal_word = normal_word + char
-    return normal_word
+for line in input_file:
+    # Remove trailing whitespace at the end of each line
+    line = line.rstrip()
 
-def generate_word_count(filename = filename, word_count = word_count):
-    """modifies dictionary 'word_count' to count words in filename"""
+    # Split the line by spaces to get a list of words
+    words = line.split()
+    for word in words:
+        # Set the word count to whatever it was + 1; if it wasn't found at all,
+        # we'll use `.get(word, 0)` to return 0 if the word wasn't already in
+        # the dictionary
+        word_counts[word] = word_counts.get(word, 0) + 1
 
-    word_count = {}
-
-    for line in open(filename):
-        line = line.rstrip()
-        words = line.split(' ')
-        for word in words:
-            word = normalize_word(word)
-            word_count[word] = word_count.get(word,0) + 1
-    
-    for word, count in word_count.items():
-        print(f"{word} {count}")
-
-generate_word_count()
+for word, count in word_counts.items():
+    print(word, count)
